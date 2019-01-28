@@ -55,7 +55,6 @@ func (s *HTTPServer) Shutdown() error {
 
 // Routes maps URI paths to handlers.
 func (s *HTTPServer) Routes() {
-	// s.router.HandleFunc("/", s.handleAPI()).Methods("POST")
 	s.router.HandleFunc("/digit", s.handleDigit()).Methods("POST")
 	s.router.HandleFunc("/number", s.handleNumber()).Methods("POST")
 	s.router.HandleFunc("/", s.handleIndex())
