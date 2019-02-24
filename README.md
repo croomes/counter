@@ -50,6 +50,41 @@ curl -X POST http://localhost:8001/digit -d '{"position": 1, "value": 9}'
 
 The example above would set the hundreds digit (2nd from left) to 9.
 
+### Brightness
+
+Set the display brightness.  Takes a number fronm 0 - 15, 0 being off, 15 full
+power.
+
+```bash
+curl -X POST http://localhost:8001/brightness -d '{"value": 10}'
+```
+
+### Colon
+
+Toggles display of the colon between the two sets of digits.
+
+```bash
+curl -X POST http://localhost:8001/colon -d '{"value": true}'
+curl -X POST http://localhost:8001/colon -d '{"value": false}'
+```
+
+### Clear Display
+
+Clear the display contents:
+
+```bash
+curl -X DELETE http://localhost:8001/
+```
+
+### Power
+
+Controls turning display power on/off:
+
+```bash
+curl -X POST http://localhost:8001/power -d '{"value": false}'
+curl -X POST http://localhost:8001/power -d '{"value": true}'
+```
+
 ## Building
 
 Requires the HT16K33 Gobot driver, not currently upstreamed (still some failing

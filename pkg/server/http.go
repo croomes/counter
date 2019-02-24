@@ -16,6 +16,7 @@ type HTTPServer struct {
 
 // Displayer can display numbers.
 type Displayer interface {
+	SetDisplay(on bool) error
 	SetBrightness(b uint8) error
 	Colon(on bool) error
 	Clear() error
@@ -55,8 +56,12 @@ func (s *HTTPServer) Shutdown() error {
 
 // Routes maps URI paths to handlers.
 func (s *HTTPServer) Routes() {
+	s.router.HandleFunc("/power", s.handlePower()).Methods("POST")
 	s.router.HandleFunc("/digit", s.handleDigit()).Methods("POST")
 	s.router.HandleFunc("/number", s.handleNumber()).Methods("POST")
+	s.router.HandleFunc("/brightness", s.handleBrightness()).Methods("POST")
+	s.router.HandleFunc("/colon", s.handleColon()).Methods("POST")
+	s.router.HandleFunc("/", s.handleClear()).Methods("DELETE")
 	s.router.HandleFunc("/", s.handleIndex())
 }
 
